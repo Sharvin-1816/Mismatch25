@@ -162,7 +162,7 @@ h1 {
     92% {
         filter: none;
     }   
-    92.5% {
+    92.6% {
         filter: invert(0.1) hue-rotate(180deg);
         transform: translate(2px, 1px);
     }
