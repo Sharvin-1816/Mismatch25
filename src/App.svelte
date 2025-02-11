@@ -2,20 +2,16 @@
   import { onMount } from 'svelte';
   import BackgroundParticles from './BackgroundParticles.svelte';
   
-  let countdown = { days: 66, hours: 21, minutes: 17 };
+  let countdown = { hours: 66, minutes: 21, seconds: 17 };
 
   function updateCountdown() {
-    const endDate = new Date('2025-04-16').getTime();
-    const now = new Date().getTime();
-    const timeLeft = Math.max(0, endDate - now);
-
-    if (timeLeft > 0) {
-      countdown = {
-        days: Math.floor(timeLeft / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-        minutes: Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60))
-      };
-    }
+    const now = new Date();
+    const targetTime = new Date('2025-02-14T12:00:00');
+    const timeDiff = targetTime.getTime() - now.getTime();
+    const hours = Math.floor(timeDiff / (1000 * 60 * 60));
+    const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+    countdown = { hours, minutes, seconds };
   }
 
   onMount(() => {
@@ -31,30 +27,13 @@
 
 <main>
   <BackgroundParticles />
-  <nav>
-    <div class="left-nav">
-      <a href="#">Home</a>
-      <a href="#">Tracks</a>
-      <a href="#">Organizers</a>
-      <a href="#">Prizes</a>
-    </div>
-    
-    <img src="/logo_trans.png" alt="IEEE RAS Logo" class="logo">
-    
-    <div class="right-nav">
-      <a href="#">Timeline</a>
-      <a href="#">Sponsors</a>
-      <a href="#">FAQ</a>
-      <a href="#">Contact</a>
-    </div>
-  </nav>
-
   <div class="content">
-    <h1 style="font-weight: 200;">Presents</h1>
+    <img src="/logo_trans.png" alt="IEEE RAS Logo" class="logo">
+    <h1 style="font-weight: 200; font-size: 2rem">Presents</h1>
     <img src="/hackathon_logo_trans.png" alt="Hackathon Logo" class="hackathon-logo">
-    <h1 style="font-weight: 200;">Register Now!!!</h1>
+    <h1 style="font-weight: 200; font-size: 2.5rem">Launch In ...</h1>
     <div class="countdown">
-      {countdown.days}d  :  {countdown.hours}h  :  {countdown.minutes}m
+      {countdown.hours}h  :  {countdown.minutes}m  :  {countdown.seconds}s
     </div>
   </div>
 </main>
@@ -82,43 +61,9 @@
       overflow: hidden;
   }
 
-  nav {
-    display: flex;
-    align-items: center;
-    padding: 0.5rem;  /* Reduced padding */
-    width: 100%;
-    position: relative;
-    z-index: 2;
-    box-sizing: border-box;
-    justify-content: center;  /* Center everything */
-  }
-
-  .left-nav {
-    display: flex;
-    gap: 4rem;  /* Increased gap between nav items */
-    align-items: center;
-    color: #ffffff;
-    padding-right: 4rem; 
-    text-decoration: none; /* Small padding before logo */
-  }
-
-  .right-nav {
-    display: flex;
-    gap: 4rem;  /* Increased gap between nav items */
-    align-items: center;
-    padding-left: 4rem; 
-    text-decoration: none; /* Small padding after logo */
-  }
-
-  .left-nav a, .right-nav a {
-    color: white;
-    text-decoration: none;
-    font-family: 'Rubik', sans-serif;
-    font-size: 1.2rem;
-}
-
   .logo {
-    height: 70px;
+    height: 100px;
+    margin-right: auto;
     margin: 0 0.5rem;  /* Reduced margin around logo */
   }
 
@@ -150,9 +95,8 @@ h1 {
 
   .countdown {
     font-family: 'Rubik Glitch', cursive;
-    font-size: 5.5rem;
-    color: #ffffff;
-    padding-top: 2rem;  /* Add padding from the top */  
+    font-size: 4rem;
+    color: #ffffff;  /* Add padding from the top */  
     font-weight: 200;
   }
 
