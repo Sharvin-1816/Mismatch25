@@ -22,6 +22,7 @@
 </script>
 
 <svelte:head>
+  <title>MisMatch'25</title>
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500&family=Rubik+Glitch&display=swap" rel="stylesheet">
 </svelte:head>
 
