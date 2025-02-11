@@ -79,6 +79,7 @@
       padding: 0;
       color: white;
       font-family: 'Rubik', sans-serif;
+      overflow: hidden;
   }
 
   nav {
@@ -117,12 +118,12 @@
 }
 
   .logo {
-    height: 80px;
+    height: 70px;
     margin: 0 0.5rem;  /* Reduced margin around logo */
   }
 
   .hackathon-logo {
-    max-width: 500px;  /* Reduced from 400px */
+    max-width: 350px;  /* Reduced from 400px */
     animation: glitch 4s infinite;
 
 }
